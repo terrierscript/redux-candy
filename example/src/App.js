@@ -10,6 +10,8 @@ class App extends Component {
       <hr />
       <h2>Todo Example</h2>
       <Todo />
+      <hr />
+      <a href="//github.com/inuscript/redux-candy">Source</a>
     </div>
   }
 }
