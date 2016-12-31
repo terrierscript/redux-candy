@@ -33,11 +33,86 @@ const App = () => (
   </Provider>
 )
 ```
+# Usage
 
-## API
+redux-sweet provide very stupid reducer that apply passed action.
+
+```js
+const initialState = {
+  counter: 0
+}
+const reducer = createReducer(initialState)
+```
+
+And you must pass action that has update function
+
+```js
+// counter
+const increment = createReducerAction('INCREMENT', 'counter', () => ( (i) => i + 1 ))
+const decrement = createReducerAction('DECREMENT', 'counter', () => ( (i) => i - 1 ))
+
+```
+
+You can pass plain action like this.
+
+```js
+const increment = () => {
+  type: 'INCREMENT',
+  payload: {
+    // [key]: updateFunction
+    counter: () => ( (i) => i + 1 )
+  }
+}
+```
+
+If you want replace value
+
+```js
+const replaceValueAction = createReducerAction('INCREMENT', 'someValue')
+// or
+const replaceValueAction = (value) => {
+  type: 'INCREMENT',
+  payload: {
+    // [key]: updateFunction
+    someValue: (oldValue) => value
+  }
+}
+```
+
+You can mutate oldValue
+
+```js
+const listItemAppendAction = createReducerAction('INCREMENT', 'someList', (oldList) => [...oldList, value])
+// or
+const listItemAppendAction = (value) => {
+  type: 'INCREMENT',
+  payload: {
+    // [key]: updateFunction
+    someList: (oldList) => [...oldList, value]
+  }
+}
+```
+
+
+# API
+## Reducer
+
 ### `createReducer(initialState: Object, [updateCondtion: Function])`
 
 Generate updeep based rootReducer.
 This reducer accept all action and return `updeep(action.payload, state)`.
 
-If you want updeep only 
+If you want controll update condition, pass `updateCondtion`
+
+```js
+const updateCondition = ( action ) => {
+  // update when pass SOME_ACTION
+  return action.type === "SOME_ACTION"
+}
+```
+
+## Action
+
+### `createReducerAction(actionType: String, value: String, [updateFunction: Function])`
+
+Helper for create action for redux-sweeet reducer.
