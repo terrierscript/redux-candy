@@ -1,5 +1,5 @@
 {
-  "name": "redux-crazy",
+  "name": "redux-candy",
   "version": "0.0.2",
   "main": "lib/index.js",
   "description": "Generate redux updeep based reducer and actions.",
