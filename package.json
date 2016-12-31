@@ -11,7 +11,7 @@
   "scripts": {
     "build": "babel src -d lib",
     "lint": "eslint",
-    "test": "yarn build; mocha --compilers js:babel-register"
+    "test": "yarn build && mocha --compilers js:babel-register"
   },
   "keyword": [
     "redux"

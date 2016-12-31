@@ -4,10 +4,11 @@ import Todo from './Todo'
 class App extends Component {
   render() {
     return <div>
-      <h1>Counter Example</h1>
+      <h1>redux-candy Example</h1>
+      <h2>Counter Example</h2>
       <Counter />
       <hr />
-      <h1>Todo Example</h1>
+      <h2>Todo Example</h2>
       <Todo />
     </div>
   }
