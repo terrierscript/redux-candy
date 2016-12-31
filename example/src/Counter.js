@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
 import updeep from 'updeep'
-import { createReducer, createReducerAction } from 'createReducer'
+import { createReducer, createReducerAction } from 'redux-candy'
 
 const initialState = {
   counter: 0

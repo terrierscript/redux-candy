@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
-import { createAction } from 'redux-actions'
-import { createReducer, createReducerAction } from '../lib/'
+import { createReducer, createReducerAction } from 'redux-candy'
 
 const initialState = {
   todos: [],
@@ -36,7 +35,7 @@ const toggleTodo = createReducerAction('TOGGLE_TODO', 'todos', (id) => (
   (todos) => todos.map( todo => toggleTodoComplete(todo, id) )
 ) )
 
-const setVisibilityFilter = createAction('SET_VISIBILITY_FILTER', 'visibilityFilter')
+const setVisibilityFilter = createReducerAction('SET_VISIBILITY_FILTER', 'visibilityFilter')
 
 const Todo = ({ onClick, completed, text, id }) => (
   <li
@@ -134,10 +133,6 @@ const todoMapStateToProps = (state) => {
 const TodoListContainer = connect(todoMapStateToProps)(TodoList)
 const AddTodoContainer = connect(state => state)(AddTodo)
 const FooterContainer = connect(state => state)(Footer)
-const DebugContainer = connect(state => state)( (props) => {
-  console.log(props)
-  return null
-})
 
 class App extends Component {
   constructor(){
@@ -151,7 +146,6 @@ class App extends Component {
           <AddTodoContainer />
           <TodoListContainer />
           <FooterContainer />
-          <DebugContainer />
         </div>
       </Provider>
     );
