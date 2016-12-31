@@ -1,7 +1,7 @@
 # redux-candy 🍭
 *HIGHLY EXPERIMENTAL*
 
-Very 
+Generate redux [updeep](https://github.com/substantial/updeep) based reducer and actions.
 
 ## Example
 
