@@ -2,23 +2,17 @@ import React, { Component } from 'react';
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
 import updeep from 'updeep'
-import { createAction } from 'redux-actions'
+import { createReducer, createReducerAction } from 'createReducer'
 
 const initialState = {
   counter: 0
 }
 
-// God reducer
-const reducer = (state = initialState, { payload } ) => {
-  if(typeof payload !== "object"){
-    return state
-  }
-  return updeep(payload, state)
-}
+const reducer = createReducer(initialState)
 
 // counter
-const increment = createAction('INCREMENT', () => ({ counter: (i) => i + 1 }))
-const decrement = createAction('DECREMENT', () => ({ counter: (i) => i - 1 }))
+const increment = createReducerAction('INCREMENT', 'counter', () => ( (i) => i + 1 ))
+const decrement = createReducerAction('DECREMENT', 'counter', () => ( (i) => i - 1 ))
 
 const Counter = ({dispatch, counter}) => {
   return (
