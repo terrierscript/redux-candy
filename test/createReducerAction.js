@@ -1,7 +1,6 @@
-import diff from 'jest-diff'
-
 import { createAction } from 'redux-actions'
-import { createReducer, createReducerAction } from './index'
+import { createReducer, createReducerAction } from '../lib'
+import assert from 'assert'
 
 const emulateState = (initialState, action) => {
   const mockReducer = createReducer()
@@ -16,7 +15,7 @@ describe("redux-sweet", () => {
       }
     })
     const actualState = emulateState({ todos: ["foo"] }, actionCreator("baz"))
-    expect(actualState).toEqual({
+    assert.deepEqual(actualState, {
       todos: ["foo", "baz"]
     })
   })
@@ -28,7 +27,7 @@ describe("redux-sweet", () => {
       }
     }) )
     const actualState = emulateState({ todos: ["foo"] }, actionCreator("baz"))
-    expect(actualState).toEqual({
+    assert.deepEqual(actualState, {
       todos: ["foo", "baz"]
     })
   })
@@ -38,7 +37,7 @@ describe("redux-sweet", () => {
       (todos) => [ ...todos, text ]
     ))
     const actualState = emulateState({ todos: ["foo"] }, actionCreator("baz"))
-    expect(actualState).toEqual({
+    assert.deepEqual(actualState, {
       todos: ["foo", "baz"]
     })
   })
@@ -46,7 +45,7 @@ describe("redux-sweet", () => {
   it("replaceValue", () => {
     const actionCreator = createReducerAction('ADD_TODO', 'someValue')
     const actualState = emulateState({ someValue: "zoo" }, actionCreator("bee"))
-    expect(actualState).toEqual({
+    assert.deepEqual(actualState, {
       someValue: "bee"
     })
   })
@@ -56,7 +55,7 @@ describe("redux-sweet", () => {
       return undefined
     })
     const actualState = emulateState({ someValue: "zoo", fooValue: "boo" }, actionCreator())
-    expect(actualState).toEqual({
+    assert.deepEqual(actualState, {
       someValue: undefined,
       fooValue: "boo"
     })

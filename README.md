@@ -1,5 +1,5 @@
 # redux-candy 🍭
-*HIGHLY EXPERIMENTAL*
+*HIGHLY EXPERIMENTAL :* This project useful for development or toy but maybe not for produciton.
 
 Generate redux [updeep](https://github.com/substantial/updeep) based reducer and actions.
 
