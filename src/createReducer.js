@@ -1,10 +1,13 @@
 import updeep from 'updeep'
 
-export default function(initialState) {
-  return (state = initialState, { payload } ) => {
-    if(typeof payload !== "object"){
+const defaultUpdateCondition = ( { payload } ) => {
+  return !!(typeof payload === "object")
+}
+export default function(initialState, updateConditon = defaultUpdateCondition) {
+  return (state = initialState, action ) => {
+    if(!updateConditon(action)){
       return state
     }
-    return updeep(payload, state)
+    return updeep(action.payload, state)
   }
 }

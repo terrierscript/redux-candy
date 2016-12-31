@@ -33,3 +33,11 @@ const App = () => (
   </Provider>
 )
 ```
+
+## API
+### `createReducer(initialState: Object, [updateCondtion: Function])`
+
+Generate updeep based rootReducer.
+This reducer accept all action and return `updeep(action.payload, state)`.
+
+If you want updeep only 
