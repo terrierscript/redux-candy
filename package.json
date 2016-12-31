@@ -1,6 +1,6 @@
 {
   "name": "redux-candy",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/index.js",
   "description": "Generate redux updeep based reducer and actions.",
   "files": [
