@@ -1,6 +1,6 @@
 {
   "name": "redux-crazy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "description": "Generate redux updeep based reducer and actions.",
   "files": [
@@ -13,7 +13,9 @@
     "lint": "eslint",
     "test": "yarn build; mocha --compilers js:babel-register"
   },
-  "keyword": ["redux"],
+  "keyword": [
+    "redux"
+  ],
   "dependencies": {
     "redux-actions": "^1.2.0",
     "updeep": "^1.0.0"
