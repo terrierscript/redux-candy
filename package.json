@@ -9,6 +9,10 @@
     "updeep": "^1.0.0"
   },
   "devDependencies": {
+    "mocha": "^3.2.0",
     "webpack": "2.2.0-rc.3"
+  },
+  "peerDependencies": {
+    "react-redux": "^5.0.1"
   }
 }
