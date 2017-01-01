@@ -30,6 +30,17 @@ describe("createAction", () => {
     })
   })
 
+  it("params updator", () => {
+    const actionCreator = createAction('ADD_TODO', 'todos', (text) => {
+      return text
+    })
+    const action = actionCreator("baz")
+    assert.deepEqual(action, {
+      type: "ADD_TODO",
+      payload: { todos: 'baz' }
+    })
+  })
+
   it("replaceValue", () => {
     const actionCreator = createAction('ADD_TODO', 'someValue')
     const actualState = emulateState({ someValue: "zoo" }, actionCreator("bee"))
