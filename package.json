@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf lib && babel src -d lib",
-    "lint": "eslint src/",
+    "lint": "eslint src/ --fix",
     "test": "yarn lint && yarn build && mocha --compilers js:babel-register",
     "prepublish": "in-publish && yarn build || not-in-publish"
   },
