@@ -11,7 +11,8 @@
   "scripts": {
     "build": "rm -rf lib && babel src -d lib",
     "lint": "eslint src/",
-    "test": "yarn lint && yarn build && mocha --compilers js:babel-register"
+    "test": "yarn lint && yarn build && mocha --compilers js:babel-register",
+    "prepublish": "in-publish && yarn build || not-in-publish"
   },
   "keyword": [
     "redux"
@@ -27,6 +28,7 @@
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
+    "in-publish": "^2.0.0",
     "mocha": "^3.2.0",
     "redux-act": "^1.1.0",
     "webpack": "2.2.0-rc.3"
