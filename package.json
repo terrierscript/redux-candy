@@ -14,6 +14,7 @@
     "test": "yarn lint && yarn build && mocha --compilers js:babel-register",
     "prepublish": "in-publish && yarn build || not-in-publish"
   },
+  "repository": "https://github.com/inuscript/redux-candy",
   "keyword": [
     "redux"
   ],
