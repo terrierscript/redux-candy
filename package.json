@@ -9,7 +9,7 @@
   "author": "inuscript <inuscript@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "rm -rf lib && babel src -d lib",
     "lint": "eslint",
     "test": "yarn build && mocha --compilers js:babel-register"
   },
@@ -25,6 +25,7 @@
     "babel-preset-es2015": "^6.18.0",
     "eslint": "^3.12.2",
     "mocha": "^3.2.0",
+    "redux-act": "^1.1.0",
     "webpack": "2.2.0-rc.3"
   }
 }
