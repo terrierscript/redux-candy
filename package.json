@@ -11,8 +11,12 @@
   ],
   "author": "inuscript <inuscript@gmail.com>",
   "license": "MIT",
+  "browser": {},
   "scripts": {
-    "build": "rm -rf lib && babel src -d lib",
+    "clean": "rimraf lib dist",
+    "build": "npm run clean && npm run build:cjs && npm run build:umd:min",
+    "build:cjs": "babel src -d lib",
+    "build:umd:min": "NODE_ENV=production webpack src/index.js dist/redux-candy.min.js",
     "lint": "eslint src/ --fix",
     "test": "yarn lint && yarn build && mocha --compilers js:babel-register",
     "prepublish": "in-publish && yarn build || not-in-publish"
@@ -30,6 +34,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
     "eslint": "^3.12.2",
     "eslint-config-standard": "^6.2.1",
@@ -38,6 +43,7 @@
     "in-publish": "^2.0.0",
     "mocha": "^3.2.0",
     "redux-act": "^1.1.0",
+    "rimraf": "^2.5.4",
     "webpack": "2.2.0-rc.3"
   }
 }
