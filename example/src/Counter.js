@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
-import updeep from 'updeep'
 import { createReducer, createAction } from 'redux-candy'
 
 const initialState = {
