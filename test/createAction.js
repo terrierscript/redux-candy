@@ -1,4 +1,4 @@
-import { createReducer, createAction } from '../lib'
+import { createReducer, createAction } from '../src'
 import assert from 'assert'
 
 const emulateState = (initialState, action) => {

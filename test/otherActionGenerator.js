@@ -2,7 +2,7 @@ import * as reduxActions from 'redux-actions'
 import * as reduxAct from 'redux-act'
 import assert from 'assert'
 
-import { createReducer, createAction } from '../lib'
+import { createReducer, createAction } from '../src'
 
 const emulateState = (initialState, action) => {
   const mockReducer = createReducer()
