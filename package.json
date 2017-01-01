@@ -10,7 +10,7 @@
     "LICENSE.md",
     "README.md"
   ],
-  "browser": "dist/",
+  "browser": "dist/redux-candy.js",
   "author": "inuscript <inuscript@gmail.com>",
   "license": "MIT",
   "scripts": {
