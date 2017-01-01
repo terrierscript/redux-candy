@@ -1,6 +1,6 @@
 {
   "name": "redux-candy",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "lib/index.js",
   "description": "Generate redux updeep based reducer and actions.",
   "files": [
@@ -14,7 +14,10 @@
     "test": "yarn lint && yarn build && mocha --compilers js:babel-register",
     "prepublish": "in-publish && yarn build || not-in-publish"
   },
-  "repository": "https://github.com/inuscript/redux-candy",
+  "repository": {
+    "type" : "git",
+    "url": "https://github.com/inuscript/redux-candy"
+  },
   "keyword": [
     "redux"
   ],
