@@ -1,6 +1,6 @@
 {
   "name": "redux-candy",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "lib/index.js",
   "description": "Generate redux updeep based reducer and actions.",
   "files": [
@@ -10,10 +10,9 @@
     "LICENSE.md",
     "README.md"
   ],
-  "browser": "dist/redux-candy.js",
+  "browser": "dist/",
   "author": "inuscript <inuscript@gmail.com>",
   "license": "MIT",
-  "browser": "dist/",
   "scripts": {
     "clean": "rimraf lib dist",
     "build": "npm run clean && npm run build:cjs && npm run build:umd && npm run build:umd:min",
