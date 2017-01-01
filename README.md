@@ -3,6 +3,17 @@
 
 Generate redux [updeep](https://github.com/substantial/updeep) based reducer and actions.
 
+## Installation
+
+```
+$ npm install redux-candy
+```
+
+```
+$ yarn add redux-candy
+```
+
+
 ## Example
 
 ```js
