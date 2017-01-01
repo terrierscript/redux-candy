@@ -4,7 +4,10 @@
   "main": "lib/index.js",
   "description": "Generate redux updeep based reducer and actions.",
   "files": [
-    "lib/*"
+    "lib",
+    "package.json",
+    "LICENSE.md",
+    "README.md"
   ],
   "author": "inuscript <inuscript@gmail.com>",
   "license": "MIT",
