@@ -1,7 +1,10 @@
 # 🍭 redux-candy (HIGHLY EXPERIMENTAL)
+
 *IMPORTANT:* This project maybe useful for development or toy but maybe not for produciton.
 
 Generate redux [updeep](https://github.com/substantial/updeep) based reducer and actions.
+
+[![npm](https://img.shields.io/npm/v/redux-candy.svg)]()
 
 ## Installation
 

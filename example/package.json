@@ -11,7 +11,7 @@
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.1",
     "redux": "^3.6.0",
-    "redux-candy": "^0.0.3"
+    "redux-candy": "^0.0.4"
   },
   "homepage": "https://inuscript.github.io/redux-candy/",
   "scripts": {
