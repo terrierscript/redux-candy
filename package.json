@@ -5,17 +5,20 @@
   "description": "Generate redux updeep based reducer and actions.",
   "files": [
     "lib",
+    "dist",
     "package.json",
     "LICENSE.md",
     "README.md"
   ],
+  "browser": "dist/redux-candy.js",
   "author": "inuscript <inuscript@gmail.com>",
   "license": "MIT",
-  "browser": {},
+  "browser": "dist/",
   "scripts": {
     "clean": "rimraf lib dist",
-    "build": "npm run clean && npm run build:cjs && npm run build:umd:min",
+    "build": "npm run clean && npm run build:cjs && npm run build:umd && npm run build:umd:min",
     "build:cjs": "babel src -d lib",
+    "build:umd": "NODE_ENV=development webpack src/index.js dist/redux-candy.js",
     "build:umd:min": "NODE_ENV=production webpack src/index.js dist/redux-candy.min.js",
     "lint": "eslint src/ --fix",
     "test": "yarn lint && yarn build && mocha --compilers js:babel-register",
