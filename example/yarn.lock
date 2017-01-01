@@ -882,14 +882,14 @@ babel-register@^6.16.0, babel-register@^6.18.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.2"
 
-babel-runtime@6.11.6, babel-runtime@^6.0.0, babel-runtime@^6.9.0, babel-runtime@^6.9.1:
+babel-runtime@6.11.6, babel-runtime@^6.9.1:
   version "6.11.6"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.11.6.tgz#6db707fef2d49c49bfa3cb64efdb436b518b8222"
   dependencies:
     core-js "^2.4.0"
     regenerator-runtime "^0.9.5"
 
-babel-runtime@^6.11.6, babel-runtime@^6.20.0:
+babel-runtime@^6.0.0, babel-runtime@^6.11.6, babel-runtime@^6.20.0, babel-runtime@^6.9.0:
   version "6.20.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.20.0.tgz#87300bdcf4cd770f09bf0048c64204e17806d16f"
   dependencies:
@@ -4402,9 +4402,9 @@ redux-actions@^1.2.0:
     lodash "^4.13.1"
     reduce-reducers "^0.1.0"
 
-redux-candy@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/redux-candy/-/redux-candy-0.0.3.tgz#71feda3dc3f767542b129341a6405c02326cc3ac"
+redux-candy@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/redux-candy/-/redux-candy-0.0.6.tgz#eb8f2434863ff9446916cab5af45f460edfc0ccc"
   dependencies:
     redux-actions "^1.2.0"
     updeep "^1.0.0"
