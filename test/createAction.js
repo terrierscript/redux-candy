@@ -43,7 +43,14 @@ describe("createAction", () => {
 
   it("replaceValue", () => {
     const actionCreator = createAction('ADD_TODO', 'someValue')
-    const actualState = emulateState({ someValue: "zoo" }, actionCreator("bee"))
+    const action = actionCreator("bee")
+    assert.deepEqual(action, {
+      type: "ADD_TODO",
+      payload: {
+        someValue: "bee"
+      }
+    })
+    const actualState = emulateState({ someValue: "zoo" }, action )
     assert.deepEqual(actualState, {
       someValue: "bee"
     })

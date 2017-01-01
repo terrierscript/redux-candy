@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
 import updeep from 'updeep'
-import { createReducer, createReducerAction } from 'redux-candy'
+import { createReducer, createAction } from 'redux-candy'
 
 const initialState = {
   counter: 0
@@ -11,8 +11,8 @@ const initialState = {
 const reducer = createReducer(initialState)
 
 // counter
-const increment = createReducerAction('INCREMENT', 'counter', () => ( (i) => i + 1 ))
-const decrement = createReducerAction('DECREMENT', 'counter', () => ( (i) => i - 1 ))
+const increment = createAction('INCREMENT', 'counter', () => ( (i) => i + 1 ))
+const decrement = createAction('DECREMENT', 'counter', () => ( (i) => i - 1 ))
 
 const Counter = ({dispatch, counter}) => {
   return (

@@ -23,8 +23,8 @@ const initialState = {
 const reducer = createReducer(initialState)
 
 // counter
-const increment = createReducerAction('INCREMENT', 'counter', () => ( (i) => i + 1 ))
-const decrement = createReducerAction('DECREMENT', 'counter', () => ( (i) => i - 1 ))
+const increment = createAction('INCREMENT', 'counter', () => ( (i) => i + 1 ))
+const decrement = createAction('DECREMENT', 'counter', () => ( (i) => i - 1 ))
 
 const Counter = ({dispatch, counter}) => {
   return (
@@ -59,8 +59,8 @@ And you must pass action that has update function
 
 ```js
 // counter
-const increment = createReducerAction('INCREMENT', 'counter', () => ( (i) => i + 1 ))
-const decrement = createReducerAction('DECREMENT', 'counter', () => ( (i) => i - 1 ))
+const increment = createAction('INCREMENT', 'counter', () => ( (i) => i + 1 ))
+const decrement = createAction('DECREMENT', 'counter', () => ( (i) => i - 1 ))
 
 ```
 
@@ -79,13 +79,13 @@ const increment = () => {
 If you want replace value
 
 ```js
-const replaceValueAction = createReducerAction('INCREMENT', 'someValue')
+const replaceValueAction = createAction('INCREMENT', 'someValue')
 // or
 const replaceValueAction = (value) => {
   type: 'INCREMENT',
   payload: {
     // [key]: updateFunction
-    someValue: (oldValue) => value
+    someValue: value
   }
 }
 ```
@@ -93,7 +93,7 @@ const replaceValueAction = (value) => {
 You can mutate oldValue
 
 ```js
-const listItemAppendAction = createReducerAction('INCREMENT', 'someList', (oldList) => [...oldList, value])
+const listItemAppendAction = createAction('INCREMENT', 'someList', (oldList) => [...oldList, value])
 // or
 const listItemAppendAction = (value) => {
   type: 'INCREMENT',
@@ -124,6 +124,6 @@ const updateCondition = ( action ) => {
 
 ## Action
 
-### `createReducerAction(actionType: String, value: String, [updateFunction: Function])`
+### `createAction(actionType: String, value: String, [updateFunction: Function])`
 
 Helper for create action for redux-sweeet reducer.
