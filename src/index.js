@@ -1,8 +1,11 @@
 import createReducer from './createReducer'
-import { createAction, createReducerAction} from './createAction'
+import {
+  createAction
+  // createReducerAction
+} from './createAction'
 
 export {
   createReducer,
-  createAction,
-  createReducerAction
+  createAction
+  // createReducerAction
 }
