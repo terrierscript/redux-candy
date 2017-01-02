@@ -1,6 +1,11 @@
 import { createReducer, createAction } from '../src'
 import assert from 'assert'
 
+const emulateState = (initialState, action) => {
+  const mockReducer = createReducer()
+  return mockReducer(initialState, action)
+}
+
 describe('createReducer', () => {
   it('updateCondtion', () => {
     const updateOnlyBeeType = (action) => {
