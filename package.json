@@ -20,7 +20,9 @@
     "build:umd": "NODE_ENV=development webpack src/index.js dist/redux-candy.js",
     "build:umd:min": "NODE_ENV=production webpack src/index.js dist/redux-candy.min.js",
     "lint": "eslint src/ test/ --fix",
-    "test": "mocha --compilers js:babel-register && yarn lint",
+    "test:unit": "mocha --compilers js:babel-register",
+    "test:watch": "mocha --compilers js:babel-register --watch",
+    "test": "yarn test:unit && yarn lint",
     "prepublish": "in-publish && yarn build || not-in-publish"
   },
   "repository": {

@@ -1,23 +1,7 @@
 import { createReducer, createAction } from '../src'
 import assert from 'assert'
 
-const emulateState = (initialState, action) => {
-  const mockReducer = createReducer()
-  return mockReducer(initialState, action)
-}
-
 describe('createAction', () => {
-  it('createReduceAction', () => {
-    const actionCreator = createAction('ADD_TODO', 'todos',
-      (text) => (todos) => [ ...todos, text ]
-    )
-    const action = actionCreator('baz')
-    const actualState = emulateState({ todos: ['foo'] }, action)
-    assert.deepEqual(actualState, {
-      todos: ['foo', 'baz']
-    })
-  })
-
   it('params updator', () => {
     const actionCreator = createAction('ADD_TODO', 'todos', (text) => {
       return text
@@ -28,7 +12,6 @@ describe('createAction', () => {
       payload: { todos: 'baz' }
     })
   })
-
   it('replaceValue', () => {
     const actionCreator = createAction('ADD_TODO', 'someValue')
     const action = actionCreator('bee')
@@ -38,20 +21,14 @@ describe('createAction', () => {
         someValue: 'bee'
       }
     })
-    const actualState = emulateState({ someValue: 'zoo' }, action)
-    assert.deepEqual(actualState, {
-      someValue: 'bee'
-    })
   })
-  it('removeValue', () => {
-    const actionCreator = createAction('ADD_TODO', 'someValue', () => {
-      return undefined
-    })
-    const actualState = emulateState({ someValue: 'zoo', fooValue: 'boo' }, actionCreator())
-    assert.deepEqual(actualState, {
-      someValue: undefined,
-      fooValue: 'boo'
-    })
+  it('update mutation', () => {
+    const actionCreator = createAction('ADD_TODO', 'todos',
+      (text) => (todos) => [ ...todos, text ]
+    )
+    const action = actionCreator('baz')
+    assert.equal(action.type, "ADD_TODO")
+    assert.equal(typeof action.payload.todos, "function")
   })
   it('with metaCreator', () => {
     const actionCreator = createAction('ADD_TODO', 'someValue', (value) => {
