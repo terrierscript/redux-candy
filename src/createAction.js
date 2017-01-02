@@ -1,3 +1,4 @@
+import isFunction from 'lodash/isFunction'
 import * as reduxActions from 'redux-actions'
 import nest from './nest'
 
@@ -14,7 +15,7 @@ function baseCreateAction ({ type, payloadCreator, metaCreator }) {
 
 export function configureCreateAction (propertyResolver = defaultPropertyResolver) {
   return function (type, property, payloadCreator, metaCreator) {
-    if (typeof property === 'function') {
+    if (isFunction(property)) {
       return baseCreateAction({
         type,
         // swap params
@@ -22,7 +23,6 @@ export function configureCreateAction (propertyResolver = defaultPropertyResolve
         metaCreator: payloadCreator
       })
     }
-
     return baseCreateAction({
       type,
       payloadCreator: propertyResolver(property)(payloadCreator),

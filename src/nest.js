@@ -1,6 +1,13 @@
-const identity = value => value
+import identity from 'lodash/identity'
+import isFunction from 'lodash/isFunction'
+import invariant from 'invariant'
+import isNull from 'lodash/isNull'
 
 function flat (key, payloadCreator = identity) {
+  invariant(
+    isFunction(payloadCreator) || isNull(payloadCreator),
+    'Expected payloadCreator to be a function, undefined or null'
+  )
   return function (...params) {
     return { [key]: payloadCreator(...params) }
   }

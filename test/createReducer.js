@@ -62,5 +62,4 @@ describe('createReducer', () => {
       fooValue: 'boo'
     })
   })
-
 })

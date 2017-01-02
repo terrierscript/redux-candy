@@ -1,4 +1,4 @@
-import { createReducer, createAction } from '../src'
+import { createAction } from '../src'
 import assert from 'assert'
 
 describe('createAction', () => {
@@ -27,8 +27,8 @@ describe('createAction', () => {
       (text) => (todos) => [ ...todos, text ]
     )
     const action = actionCreator('baz')
-    assert.equal(action.type, "ADD_TODO")
-    assert.equal(typeof action.payload.todos, "function")
+    assert.equal(action.type, 'ADD_TODO')
+    assert.equal(typeof action.payload.todos, 'function')
   })
   it('with metaCreator', () => {
     const actionCreator = createAction('ADD_TODO', 'someValue', (value) => {
@@ -70,5 +70,11 @@ describe('createAction', () => {
       },
       meta: 'beebazfoo'
     })
+  })
+  it('throw', () => {
+    assert.throws(
+      () => createAction('ADD_TODO', 'someValue', 'foo'),
+      'Expected payloadCreator to be a function, undefined or null'
+    )
   })
 })
