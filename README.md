@@ -112,9 +112,9 @@ You can pass nested property.
 
 ```js
 const actionCreator = createAction('SOME_TYPE', ['a', 'b', 'c'])
-// or
 const action = actionCreator('value')
-assert.deepEqual(action, {
+// or
+const action = {
   type: 'SOME_TYPE',
   payload: {
     a: {
@@ -124,6 +124,19 @@ assert.deepEqual(action, {
     }
   }
 })
+```
+
+You can pass key-value action.
+
+```js
+const actionCreator = createAction('SOME_TYPE', (userName, value) => {
+  return {
+    user: {
+      [userName]: value
+    }
+  }
+})
+const action = actionCreator('bob', 100)
 ```
 
 

@@ -65,17 +65,24 @@ describe('createReducer', () => {
   it('with complex actionCreator', () => {
     const complexActionCreator = createAction('SOME_COMPLEX', (value, key) => {
       return {
-        [key]: (i = 0) => (i + value)
+        users: {
+          [key]: (i = 0) => (i + value)
+        }
       }
     })
-    const actualState1 = emulateState({ bob: 1 }, complexActionCreator(10, 'bob'))
+    const initialState = { users: { bob: 1 } }
+    const actualState1 = emulateState(initialState, complexActionCreator(10, 'bob'))
     assert.deepEqual(actualState1, {
-      bob: 11
+      users: {
+        bob: 11
+      }
     })
-    const actualState2 = emulateState({ bob: 1 }, complexActionCreator(10, 'sam'))
+    const actualState2 = emulateState(initialState, complexActionCreator(10, 'sam'))
     assert.deepEqual(actualState2, {
-      bob: 1,
-      sam: 10
+      users: {
+        bob: 1,
+        sam: 10
+      }
     })
   })
 
