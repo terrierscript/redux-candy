@@ -4,7 +4,8 @@
 
 Generate redux [updeep](https://github.com/substantial/updeep) based reducer and actions.
 
-[![npm](https://img.shields.io/npm/v/redux-candy.svg)](https://www.npmjs.com/package/redux-candy)
+[![npm](https://img.shields.io/npm/v/redux-candy.svg?style=flat-square)](https://www.npmjs.com/package/redux-candy)
+[![Travis](https://img.shields.io/travis/inuscript/redux-candy.svg?style=flat-square)](https://travis-ci.org/inuscript/redux-candy)
 
 ## Installation
 
