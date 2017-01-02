@@ -6,64 +6,64 @@ const emulateState = (initialState, action) => {
   return mockReducer(initialState, action)
 }
 
-describe("createAction", () => {
-  it("with plain action", () => {
+describe('createAction', () => {
+  it('with plain action', () => {
     const actionCreator = (text) => ({
       type: 'ADD_TODO',
       payload: {
         todos: (todos) => [ ...todos, text ]
       }
     })
-    const actualState = emulateState({ todos: ["foo"] }, actionCreator("baz"))
+    const actualState = emulateState({ todos: ['foo'] }, actionCreator('baz'))
     assert.deepEqual(actualState, {
-      todos: ["foo", "baz"]
+      todos: ['foo', 'baz']
     })
   })
 
-  it("createReduceAction", () => {
-    const actionCreator = createAction('ADD_TODO', 'todos', (text) => (
+  it('createReduceAction', () => {
+    const actionCreator = createAction('ADD_TODO', 'todos', (text) =>
       (todos) => [ ...todos, text ]
-    ))
-    const actualState = emulateState({ todos: ["foo"] }, actionCreator("baz"))
+    )
+    const actualState = emulateState({ todos: ['foo'] }, actionCreator('baz'))
     assert.deepEqual(actualState, {
-      todos: ["foo", "baz"]
+      todos: ['foo', 'baz']
     })
   })
 
-  it("params updator", () => {
+  it('params updator', () => {
     const actionCreator = createAction('ADD_TODO', 'todos', (text) => {
       return text
     })
-    const action = actionCreator("baz")
+    const action = actionCreator('baz')
     assert.deepEqual(action, {
-      type: "ADD_TODO",
+      type: 'ADD_TODO',
       payload: { todos: 'baz' }
     })
   })
 
-  it("replaceValue", () => {
+  it('replaceValue', () => {
     const actionCreator = createAction('ADD_TODO', 'someValue')
-    const action = actionCreator("bee")
+    const action = actionCreator('bee')
     assert.deepEqual(action, {
-      type: "ADD_TODO",
+      type: 'ADD_TODO',
       payload: {
-        someValue: "bee"
+        someValue: 'bee'
       }
     })
-    const actualState = emulateState({ someValue: "zoo" }, action )
+    const actualState = emulateState({ someValue: 'zoo' }, action)
     assert.deepEqual(actualState, {
-      someValue: "bee"
+      someValue: 'bee'
     })
   })
 
-  it("removeValue", () => {
+  it('removeValue', () => {
     const actionCreator = createAction('ADD_TODO', 'someValue', () => {
       return undefined
     })
-    const actualState = emulateState({ someValue: "zoo", fooValue: "boo" }, actionCreator())
+    const actualState = emulateState({ someValue: 'zoo', fooValue: 'boo' }, actionCreator())
     assert.deepEqual(actualState, {
       someValue: undefined,
-      fooValue: "boo"
+      fooValue: 'boo'
     })
   })
 })
