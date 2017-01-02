@@ -17,5 +17,6 @@ module.exports = {
   output: {
     library: 'ReduxCandy',
     libraryTarget: 'umd'
-  }
+  },
+  performance: { hints: false}
 }
