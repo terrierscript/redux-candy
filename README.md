@@ -17,7 +17,6 @@ $ npm install redux-candy
 $ yarn add redux-candy
 ```
 
-
 ## Example
 
 ```js
@@ -48,6 +47,9 @@ const App = () => (
   </Provider>
 )
 ```
+
+You can show [real demo](https://inuscript.github.io/redux-candy/) and [example source](https://github.com/inuscript/redux-candy/tree/master/example)
+
 # Usage
 
 redux-candy provide very stupid reducer that apply passed action.
