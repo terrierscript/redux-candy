@@ -4,7 +4,7 @@ const defaultUpdateCondition = ({ payload }) => {
   return !!(typeof payload === 'object')
 }
 
-export default function (initialState, updateConditon = defaultUpdateCondition) {
+export default function createReducer (initialState, updateConditon = defaultUpdateCondition) {
   return (state = initialState, action) => {
     if (!updateConditon(action)) {
       return state
