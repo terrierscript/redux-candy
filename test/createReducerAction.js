@@ -17,4 +17,12 @@ describe('createReducerAction', () => {
       todos: ['foo', 'baz']
     })
   })
+  it('with null function', () => {
+    const actionCreator = createReducerAction('ACTION', 'value')
+    const action = actionCreator('baz')
+    const actualState = emulateState({ value: 'bee' }, action)
+    assert.deepEqual(actualState, {
+      value: 'baz'
+    })
+  })
 })

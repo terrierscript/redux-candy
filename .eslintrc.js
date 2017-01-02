@@ -8,6 +8,8 @@ module.exports = {
         "promise"
     ],
     "rules": {
-        "standard/object-curly-even-spacing": 0
+        // ignore autofix rule
+        "standard/object-curly-even-spacing": 0,
+        "standard/array-bracket-even-spacing": 0
     }
 };

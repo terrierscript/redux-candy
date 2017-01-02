@@ -6,7 +6,6 @@ import compose from './compose'
 import { createAction as baseCreateAction } from 'redux-actions'
 import nest from './nest'
 
-const identity = v => v
 const toArray = item => (Array.isArray(item)) ? item : [item]
 
 const nestObjectHash = nest((key, fn, val) => {
@@ -22,7 +21,7 @@ const payloadCreatorInvariant = (payloadCreator) => {
 }
 
 function generateCreateAction (options) {
-  return function (type, property, payloadCreator = identity, metaCreator) {
+  return function (type, property, payloadCreator = options.defaultPayloadCreator, metaCreator) {
     if (isFunction(property)) {
       return baseCreateAction(type, property, payloadCreator)
     }
@@ -43,6 +42,7 @@ function generateCreateAction (options) {
 
 // createAction
 export const createAction = generateCreateAction({
+  defaultPayloadCreator: v => v,
   payloadCreatorWrapper: v => v
 })
 
@@ -54,6 +54,7 @@ const reducerActionPayload = (fn) => {
 }
 
 export const createReducerAction = generateCreateAction({
+  defaultPayloadCreator: (state, v) => v,
   payloadCreatorWrapper: reducerActionPayload
 })
 
