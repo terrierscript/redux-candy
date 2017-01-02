@@ -62,6 +62,22 @@ describe('createReducer', () => {
     const actualWithSweet = mockReducer({ foo: 'baz' }, sweetAction('sweet'))
     assert.deepEqual(actualWithSweet, { foo: 'sweet' }) // NOT change
   })
+  it('with complex actionCreator', () => {
+    const complexActionCreator = createAction('SOME_COMPLEX', (value, key) => {
+      return {
+        [key]: (i = 0) => (i + value)
+      }
+    })
+    const actualState1 = emulateState({ bob: 1 }, complexActionCreator(10, 'bob'))
+    assert.deepEqual(actualState1, {
+      bob: 11
+    })
+    const actualState2 = emulateState({ bob: 1 }, complexActionCreator(10, 'sam'))
+    assert.deepEqual(actualState2, {
+      bob: 1,
+      sam: 10
+    })
+  })
 
   describe('ignore update', () => {
     it('payload is string', () => {

@@ -149,7 +149,6 @@ const updateCondition = ( action ) => {
 }
 ```
 
-
 ## Action
 
 ### `createAction(actionType: String, targetProperty: (String | Array), [updateFunction: Function], [metaCreator: Function])`
