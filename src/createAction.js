@@ -1,4 +1,4 @@
-import { createAction as baseCreateAction } from 'redux-actions'
+import reduxActions from 'redux-actions'
 import nest from './nest'
 
 function defaultPropertyResolver (property) {
@@ -8,10 +8,26 @@ function defaultPropertyResolver (property) {
   return nest(property)
 }
 
+function baseCreateAction ({ type, payloadCreator, metaCreator }) {
+  return reduxActions.createAction(type, payloadCreator, metaCreator)
+}
+
 export function configureCreateAction (propertyResolver = defaultPropertyResolver) {
-  return function wrapCreateAction (type, property, payloadCreator, metaCreator) {
-    const wrappedPayloadCreator = propertyResolver(property)(payloadCreator)
-    return baseCreateAction(type, wrappedPayloadCreator, metaCreator)
+  return function (type, property, payloadCreator, metaCreator) {
+    if (typeof property === 'function') {
+      return baseCreateAction({
+        type,
+        // swap params
+        payloadCreator: property,
+        metaCreator: payloadCreator
+      })
+    }
+
+    return baseCreateAction({
+      type,
+      payloadCreator: propertyResolver(property)(payloadCreator),
+      metaCreator
+    })
   }
 }
 

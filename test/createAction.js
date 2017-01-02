@@ -7,7 +7,6 @@ const emulateState = (initialState, action) => {
 }
 
 describe('createAction', () => {
-
   it('createReduceAction', () => {
     const actionCreator = createAction('ADD_TODO', 'todos',
       (text) => (todos) => [ ...todos, text ]
@@ -78,6 +77,21 @@ describe('createAction', () => {
           }
         }
       }
+    })
+  })
+  it('functional (full controlled)', () => {
+    const actionCreator = createAction('SOME_TYPE', (value, key) => {
+      return { [key]: value }
+    }, (value, key, meta) => {
+      return meta + value + key
+    })
+    const action = actionCreator('baz', 'foo', 'bee')
+    assert.deepEqual(action, {
+      type: 'SOME_TYPE',
+      payload: {
+        'foo': 'baz'
+      },
+      meta: 'beebazfoo'
     })
   })
 })
