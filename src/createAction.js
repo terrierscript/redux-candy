@@ -9,9 +9,9 @@ function defaultPropertyResolver (property) {
 }
 
 export function configureCreateAction (propertyResolver = defaultPropertyResolver) {
-  return function wrapCreateAction (type, property, payloadCreator, ...rest) {
-    const _payloadCreator = propertyResolver(property)(payloadCreator)
-    return baseCreateAction(type, _payloadCreator, ...rest)
+  return function wrapCreateAction (type, property, payloadCreator, metaCreator) {
+    const wrappedPayloadCreator = propertyResolver(property)(payloadCreator)
+    return baseCreateAction(type, wrappedPayloadCreator, metaCreator)
   }
 }
 
