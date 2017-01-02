@@ -134,6 +134,12 @@ assert.deepEqual(action, {
 Generate updeep based rootReducer.
 This reducer accept all action and return `updeep(action.payload, state)`.
 
+This reducer ignore below action too.
+
+* Not [flux standard action](https://github.com/acdlite/flux-standard-action).
+* Non object type payload action.
+  * Ignore action example: `{ type:"TYPE", payload: "someValue" }`
+
 If you want controll update condition, pass `actionFilter`
 
 ```js
@@ -142,6 +148,7 @@ const updateCondition = ( action ) => {
   return action.type === "SOME_ACTION"
 }
 ```
+
 
 ## Action
 
