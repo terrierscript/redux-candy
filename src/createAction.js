@@ -1,10 +1,8 @@
 import { createAction } from 'redux-actions'
-
+import nest from './nest'
 const identity = value => value
 
 export default function (type, key, updateFunction = identity) {
-  const payloadCreator = (...params) => {
-    return { [key]: updateFunction(...params) }
-  }
+  const payloadCreator = nest(key)(updateFunction)
   return createAction(type, payloadCreator)
 }
