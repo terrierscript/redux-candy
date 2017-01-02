@@ -99,7 +99,7 @@ const replaceValueAction = (value) => {
 You can mutate oldValue
 
 ```js
-const listItemAppendAction = createAction('INCREMENT', 'someList', (oldList) => [...oldList, value])
+const listItemAppendAction = createAction('INCREMENT', 'someList', (value => oldList => [...oldList, value])
 // or
 const listItemAppendAction = (value) => {
   type: 'INCREMENT',
