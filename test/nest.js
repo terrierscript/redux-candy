@@ -1,5 +1,5 @@
 import assert from 'assert'
-import { nest } from '../src'
+import nest from '../src/nest'
 
 const identity = v => v
 

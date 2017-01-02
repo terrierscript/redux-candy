@@ -1,4 +1,5 @@
-import { configureCreateAction, nest } from '../src'
+import { configureCreateAction } from '../src/createAction'
+import nest from '../src/nest'
 import assert from 'assert'
 
 describe('configureCreateAction', () => {
