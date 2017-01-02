@@ -14,17 +14,19 @@ describe('createAction', () => {
         todos: (todos) => [ ...todos, text ]
       }
     })
-    const actualState = emulateState({ todos: ['foo'] }, actionCreator('baz'))
+    const action = actionCreator('baz')
+    const actualState = emulateState({ todos: ['foo'] }, action)
     assert.deepEqual(actualState, {
       todos: ['foo', 'baz']
     })
   })
 
   it('createReduceAction', () => {
-    const actionCreator = createAction('ADD_TODO', 'todos', (text) =>
-      (todos) => [ ...todos, text ]
+    const actionCreator = createAction('ADD_TODO', 'todos',
+      (text) => (todos) => [ ...todos, text ]
     )
-    const actualState = emulateState({ todos: ['foo'] }, actionCreator('baz'))
+    const action = actionCreator('baz')
+    const actualState = emulateState({ todos: ['foo'] }, action)
     assert.deepEqual(actualState, {
       todos: ['foo', 'baz']
     })
