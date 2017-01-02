@@ -8,8 +8,8 @@ import nest from './nest'
 
 const toArray = item => (Array.isArray(item)) ? item : [item]
 
-const nestObjectHash = nest((key, fn, val) => {
-  return { [key]: fn(val) }
+const nestObjectHash = nest((key, fn, ...val) => {
+  return { [key]: fn(...val) }
 })
 
 const payloadCreatorInvariant = (payloadCreator) => {

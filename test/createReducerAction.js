@@ -25,4 +25,23 @@ describe('createReducerAction', () => {
       value: 'baz'
     })
   })
+  it('override state', () => {
+    const actionCreator = createReducerAction('SOME_TYPE', 'user', (state, userName, value) => {
+      return {
+        [userName]: value
+      }
+    })
+    const action = actionCreator('bob', 100)
+    const actualState = emulateState({
+      user: {
+        'bob': 10,
+        'sam': 20
+      }
+    }, action)
+    assert.deepEqual(actualState, {
+      user: {
+        'bob': 100
+      }
+    })
+  })
 })
