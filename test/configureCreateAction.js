@@ -3,7 +3,8 @@ import assert from 'assert'
 
 describe('configureCreateAction', () => {
   it('append custom action creator', () => {
-    const customCreateAction = configureCreateAction(nest('someFixedValue', key))
+    const customPropertyResolver = (key) => nest('someFixedValue', key)
+    const customCreateAction = configureCreateAction(customPropertyResolver)
     const someActionCreator = customCreateAction('SOME_TYPE', 'baz')
     const action = someActionCreator('foo')
     assert.deepEqual(action, {

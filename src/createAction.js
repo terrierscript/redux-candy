@@ -1,14 +1,14 @@
-import * as reduxActions from 'redux-actions'
+import { createAction as baseCreateAction } from 'redux-actions'
 import nest from './nest'
 
-function defaulResolveKeyFunction (key) {
+function defaultPropertyResolver(key){
   return nest(key)
 }
 
-export function configureCreateAction (resolveKeyFunction = defaulResolveKeyFunction) {
-  return function (type, key, payloadCreator) {
-    const _payloadCreator = resolveKeyFunction(key)(payloadCreator)
-    return reduxActions.createAction(type, _payloadCreator)
+export function configureCreateAction (propertyResolver = defaultPropertyResolver) {
+  return function wrapCreateAction (type, key, payloadCreator) {
+    const _payloadCreator = propertyResolver(key)(payloadCreator)
+    return baseCreateAction(type, _payloadCreator)
   }
 }
 
