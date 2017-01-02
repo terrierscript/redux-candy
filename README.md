@@ -129,12 +129,12 @@ assert.deepEqual(action, {
 # API
 ## Reducer
 
-### `createReducer(initialState: Object, [updateCondtion: Function])`
+### `createReducer(initialState: Object, [actionFilter: Function])`
 
 Generate updeep based rootReducer.
 This reducer accept all action and return `updeep(action.payload, state)`.
 
-If you want controll update condition, pass `updateCondtion`
+If you want controll update condition, pass `actionFilter`
 
 ```js
 const updateCondition = ( action ) => {
