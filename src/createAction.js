@@ -1,4 +1,4 @@
-import reduxActions from 'redux-actions'
+import * as reduxActions from 'redux-actions'
 import nest from './nest'
 
 function defaultPropertyResolver (property) {
