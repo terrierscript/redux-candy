@@ -19,8 +19,8 @@
     "build:cjs": "babel src -d lib",
     "build:umd": "NODE_ENV=development webpack src/index.js dist/redux-candy.js",
     "build:umd:min": "NODE_ENV=production webpack src/index.js dist/redux-candy.min.js",
-    "lint": "eslint src/ --fix",
-    "test": "yarn lint && mocha --compilers js:babel-register",
+    "lint": "eslint src/ test/ --fix",
+    "test": "mocha --compilers js:babel-register && yarn lint",
     "prepublish": "in-publish && yarn build || not-in-publish"
   },
   "repository": {
