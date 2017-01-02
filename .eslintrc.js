@@ -6,5 +6,8 @@ module.exports = {
     "plugins": [
         "standard",
         "promise"
-    ]
+    ],
+    "rules": {
+        "standard/object-curly-even-spacing": 0
+    }
 };
