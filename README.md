@@ -151,11 +151,62 @@ const updateCondition = ( action ) => {
 
 ## Action
 
-### `createAction(actionType: String, targetProperty: (String | Array), [updateFunction: Function], [metaCreator: Function])`
-
-Helper for create action for redux-sweeet reducer.
+Helper for create action for redux-candy reducer.
 This actionCreator return [FSA compatible](https://github.com/acdlite/flux-standard-action) action.
+
+### `createAction(actionType: String, targetProperty: String, [updateFunction: Function], [metaCreator: Function])`
+
+Generate update targetProperty value action.
+
+```js
+// const initialState = { bob: 1 }
+const complexActionCreator = createAction('ACTION', 'bob', (key) => val)
+store.dispatch(complexActionCreator(10, 'bob')))
+// state:
+// {
+//   bob: 10
+// }
+```
+
+### `createAction(actionType: String, targetProperties: Array, [updateFunction: Function], [metaCreator: Function])`
+
+Generate update targetProperty value action.
+
+```js
+// const initialState = { users: { bob: 1 } }
+const complexActionCreator = createAction('ACTION', ['users', 'bob'], (key) => val)
+store.dispatch(complexActionCreator(10, 'bob')))
+// state:
+// {
+//   users: {
+//     bob: 10
+//   }
+// }
+```
 
 ### `createAction(actionType: String, updateFunction: Function, [metaCreator: Function])`
 
 Proxy [redux-action](https://github.com/acdlite/redux-actions#createactiontype-payloadcreator--identity-metacreator)
+
+You can fully controll payload.
+
+```js
+// const initialState = { bob: 1 }
+const complexActionCreator = createAction('SOME_COMPLEX', (value, key) => {
+  return {
+    [key]: (i = 0) => (i + value)
+  }
+})
+store.dispatch(complexActionCreator(10, 'bob')))
+// state:
+// {
+//   bob: 11
+// }
+
+store.dispatch(complexActionCreator(10, 'bob')))
+// state:
+// {
+//   bob: 1,
+//   sam: 10
+// }
+```
