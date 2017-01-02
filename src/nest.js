@@ -3,7 +3,7 @@ import isFunction from 'lodash/isFunction'
 import invariant from 'invariant'
 import isNull from 'lodash/isNull'
 
-function flat (key, payloadCreator = identity) {
+function wrapPayloadCreator (key, payloadCreator = identity) {
   invariant(
     isFunction(payloadCreator) || isNull(payloadCreator),
     'Expected payloadCreator to be a function, undefined or null'
@@ -22,7 +22,7 @@ function compose (...funcs) {
 
 export default function nest (...keys) {
   const nestFuncs = keys.map(
-    (key) => (updateFunction) => flat(key, updateFunction)
+    (key) => (updateFunction) => wrapPayloadCreator(key, updateFunction)
   )
   return compose(...nestFuncs)
 }
