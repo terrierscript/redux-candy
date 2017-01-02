@@ -14,4 +14,18 @@ describe('createReducer', () => {
     const actualWithSweet = mockReducer({ foo: 'baz' }, sweetAction('sweet'))
     assert.deepEqual(actualWithSweet, { foo: 'sweet' }) // NOT change
   })
+
+  it('update with plain action', () => {
+    const actionCreator = (text) => ({
+      type: 'ADD_TODO',
+      payload: {
+        todos: (todos) => [ ...todos, text ]
+      }
+    })
+    const action = actionCreator('baz')
+    const actualState = emulateState({ todos: ['foo'] }, action)
+    assert.deepEqual(actualState, {
+      todos: ['foo', 'baz']
+    })
+  })
 })

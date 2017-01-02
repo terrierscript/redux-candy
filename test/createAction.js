@@ -7,19 +7,6 @@ const emulateState = (initialState, action) => {
 }
 
 describe('createAction', () => {
-  it('with plain action', () => {
-    const actionCreator = (text) => ({
-      type: 'ADD_TODO',
-      payload: {
-        todos: (todos) => [ ...todos, text ]
-      }
-    })
-    const action = actionCreator('baz')
-    const actualState = emulateState({ todos: ['foo'] }, action)
-    assert.deepEqual(actualState, {
-      todos: ['foo', 'baz']
-    })
-  })
 
   it('createReduceAction', () => {
     const actionCreator = createAction('ADD_TODO', 'todos',
