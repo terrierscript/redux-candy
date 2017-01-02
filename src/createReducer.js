@@ -1,18 +1,26 @@
 import updeep from 'updeep'
 import { isFSA } from 'flux-standard-action'
 
-const emptyCondition = (action) => false
-export default function createReducer (initialState, ignoreCondition = emptyCondition) {
+const defaultCondition = (action) => {
+  return true
+}
+
+const isObjectPayload = (action) => (action && typeof action.payload === 'object')
+
+export default function createReducer (initialState, updateActionCondition = defaultCondition) {
   return (state = initialState, action) => {
+    if (!updateActionCondition(action)) {
+      return state
+    }
+
     if (!isFSA(action)) {
       return state
     }
-    if (typeof action.payload !== 'object') {
+
+    if (!isObjectPayload(action)) {
       return state
     }
-    if (ignoreCondition(action)) {
-      return state
-    }
+
     return updeep(action.payload, state)
   }
 }

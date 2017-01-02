@@ -51,12 +51,12 @@ describe('createReducer', () => {
   })
 
   it('configure updateCondtion', () => {
-    const ignoreActionCondition = (action) => {
-      return action.type !== 'DO_SWEET'
+    const customCondition = (action) => {
+      return action.type === 'DO_SWEET'
     }
     const notSweetAction = createAction('NOT_SWEET', 'foo')
     const sweetAction = createAction('DO_SWEET', 'foo')
-    const mockReducer = createReducer({}, ignoreActionCondition)
+    const mockReducer = createReducer({}, customCondition)
     const actualWithNot = mockReducer({ foo: 'baz' }, notSweetAction('not'))
     assert.deepEqual(actualWithNot, { foo: 'baz' }) // NOT change
     const actualWithSweet = mockReducer({ foo: 'baz' }, sweetAction('sweet'))
@@ -83,12 +83,6 @@ describe('createReducer', () => {
         nonFsaProps: 'value'
       }
       const actualState = emulateState({ foo: 'baz'}, nonFSAaction)
-      assert.deepEqual(actualState, {
-        foo: 'baz'
-      })
-    })
-    it('payload is undefined', () => {
-      const actualState = emulateState({ foo: 'baz'}, undefined)
       assert.deepEqual(actualState, {
         foo: 'baz'
       })
