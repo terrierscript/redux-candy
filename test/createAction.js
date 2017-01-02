@@ -68,4 +68,16 @@ describe('createAction', () => {
       fooValue: 'boo'
     })
   })
+  it('with metaCreator', () => {
+    const actionCreator = createAction('ADD_TODO', 'someValue', (value) => {
+      return { value }
+    }, (_, metaValue) => {
+      return { metaValue }
+    })
+    assert.deepEqual(actionCreator('a', 'b'), {
+      type: 'ADD_TODO',
+      payload: { someValue: { value: 'a' } },
+      meta: { metaValue: 'b' }
+    })
+  })
 })

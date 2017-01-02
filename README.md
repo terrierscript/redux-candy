@@ -127,6 +127,7 @@ const updateCondition = ( action ) => {
 
 ## Action
 
-### `createAction(actionType: String, value: String, [updateFunction: Function])`
+### `createAction(actionType: String, value: String, [updateFunction: Function], [metaCreator: Function])`
 
 Helper for create action for redux-sweeet reducer.
+This actionCreator return [FSA compatible](https://github.com/acdlite/flux-standard-action) action.
