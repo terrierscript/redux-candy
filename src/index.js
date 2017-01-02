@@ -1,9 +1,10 @@
 import createReducer from './createReducer'
-import createAction from './createAction'
+import { createAction, configureCreateAction } from './createAction'
 import nest from './nest'
 
 export {
   createReducer,
   createAction,
+  configureCreateAction,
   nest
 }
