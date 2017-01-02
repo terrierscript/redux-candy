@@ -2,6 +2,9 @@ import { createAction as baseCreateAction } from 'redux-actions'
 import nest from './nest'
 
 function defaultPropertyResolver (key) {
+  if (Array.isArray(key)) {
+    return nest(...key)
+  }
   return nest(key)
 }
 

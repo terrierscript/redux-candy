@@ -49,7 +49,7 @@ const App = () => (
 ```
 # Usage
 
-redux-sweet provide very stupid reducer that apply passed action.
+redux-candy provide very stupid reducer that apply passed action.
 
 ```js
 const initialState = {
@@ -107,6 +107,24 @@ const listItemAppendAction = (value) => {
 }
 ```
 
+You can pass nested property.
+
+```js
+const actionCreator = createAction('SOME_TYPE', ['a', 'b', 'c'])
+// or
+const action = actionCreator('value')
+assert.deepEqual(action, {
+  type: 'SOME_TYPE',
+  payload: {
+    a: {
+      b: {
+        c: 'value'
+      }
+    }
+  }
+})
+```
+
 
 # API
 ## Reducer
@@ -127,7 +145,8 @@ const updateCondition = ( action ) => {
 
 ## Action
 
-### `createAction(actionType: String, value: String, [updateFunction: Function], [metaCreator: Function])`
+### `createAction(actionType: String, target: (String | Array), [updateFunction: Function], [metaCreator: Function])`
 
 Helper for create action for redux-sweeet reducer.
 This actionCreator return [FSA compatible](https://github.com/acdlite/flux-standard-action) action.
+

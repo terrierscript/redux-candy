@@ -57,7 +57,6 @@ describe('createAction', () => {
       someValue: 'bee'
     })
   })
-
   it('removeValue', () => {
     const actionCreator = createAction('ADD_TODO', 'someValue', () => {
       return undefined
@@ -78,6 +77,20 @@ describe('createAction', () => {
       type: 'ADD_TODO',
       payload: { someValue: { value: 'a' } },
       meta: { metaValue: 'b' }
+    })
+  })
+  it('nest key', () => {
+    const actionCreator = createAction('SOME_TYPE', ['a', 'b', 'c'])
+    const action = actionCreator('value')
+    assert.deepEqual(action, {
+      type: 'SOME_TYPE',
+      payload: {
+        a: {
+          b: {
+            c: 'value'
+          }
+        }
+      }
     })
   })
 })
