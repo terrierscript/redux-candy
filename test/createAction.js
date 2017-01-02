@@ -79,7 +79,7 @@ describe('createAction', () => {
       meta: { metaValue: 'b' }
     })
   })
-  it('nest key', () => {
+  it('nest property', () => {
     const actionCreator = createAction('SOME_TYPE', ['a', 'b', 'c'])
     const action = actionCreator('value')
     assert.deepEqual(action, {
