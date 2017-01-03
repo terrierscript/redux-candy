@@ -1,6 +1,6 @@
 import compose from './compose'
 
-const curried = (key, convert) => {
+const resolve = (key, convert) => {
   return (payloadCreator) => (...input) => {
     return convert(key, payloadCreator, ...input)
   }
@@ -9,7 +9,7 @@ const curried = (key, convert) => {
 export const nest = (convert) => {
   return (...keys) => {
     const nestFuncs = keys.map(
-      (key) => curried(key, convert)
+      (key) => resolve(key, convert)
     )
     return compose(...nestFuncs)
   }
