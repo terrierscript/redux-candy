@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
-// import { createReducer, createAction } from 'redux-candy'
-import { createReducer, createAction } from '../../lib/'
+import { createReducer, createAction } from 'redux-candy'
 
 const initialState = {
   todos: [],
