@@ -48,8 +48,11 @@ const App = () => (
 )
 ```
 
-You can show [ESNextbin](https://esnextb.in/?gist=e7e100d8af0dcb58bc6966335c36c084) or
-[real demo](https://inuscript.github.io/redux-candy/) and [example source](https://github.com/inuscript/redux-candy/tree/master/example)
+### Live example
+* [Counter example](https://esnextb.in/?gist=e7e100d8af0dcb58bc6966335c36c084)
+* [Todo example](https://esnextb.in/?gist=9c6cd9623154aade7506d00e559b9680)
+
+[example source](https://github.com/inuscript/redux-candy/tree/master/example)
 
 # Usage
 
