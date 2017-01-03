@@ -8,7 +8,6 @@ const initialState = {
   todoCompletes: {},
 }
 
-// God reducer
 const reducer = createReducer(initialState)
 
 let nextTodoId = 0
@@ -26,7 +25,6 @@ const addTodo = createAction('ADD_TODO', 'todos', (todos, text) => (
 const toggleTodo = createAction('ADD_TODO', (id) => ({
   todoCompletes: {
     [id]: (flag) => {
-      console.log(flag)
       return !flag
     }
   }
