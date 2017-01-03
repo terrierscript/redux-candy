@@ -1,5 +1,5 @@
 import assert from 'assert'
-import nestGenerator from '../src/nest'
+import nestGenerator from '../src/action/nest'
 
 const identity = v => v
 const nest = nestGenerator((key, fn, val) => {
