@@ -1,5 +1,10 @@
 import { createAction } from '../src'
 import assert from 'assert'
+import updeep from 'updeep'
+
+const resolveAction = (action) => {
+  return updeep({ payload: action.payload}, action)
+}
 
 describe('createAction', () => {
   it('params updator', () => {
@@ -7,7 +12,7 @@ describe('createAction', () => {
       return text
     })
     const action = actionCreator('baz')
-    assert.deepEqual(action, {
+    assert.deepEqual(resolveAction(action), {
       type: 'ADD_TODO',
       payload: { todos: 'baz' }
     })
@@ -15,7 +20,7 @@ describe('createAction', () => {
   it('replaceValue', () => {
     const actionCreator = createAction('ADD_TODO', 'someValue')
     const action = actionCreator('bee')
-    assert.deepEqual(action, {
+    assert.deepEqual(resolveAction(action), {
       type: 'ADD_TODO',
       payload: {
         someValue: 'bee'
@@ -36,7 +41,8 @@ describe('createAction', () => {
     }, (_, metaValue) => {
       return { metaValue }
     })
-    assert.deepEqual(actionCreator('a', 'b'), {
+    const action = actionCreator('a', 'b')
+    assert.deepEqual(resolveAction(action), {
       type: 'ADD_TODO',
       payload: { someValue: { value: 'a' } },
       meta: { metaValue: 'b' }
@@ -45,7 +51,7 @@ describe('createAction', () => {
   it('nest property', () => {
     const actionCreator = createAction('SOME_TYPE', ['a', 'b', 'c'])
     const action = actionCreator('value')
-    assert.deepEqual(action, {
+    assert.deepEqual(resolveAction(action), {
       type: 'SOME_TYPE',
       payload: {
         a: {
@@ -63,7 +69,7 @@ describe('createAction', () => {
       return meta + value + key
     })
     const action = actionCreator('baz', 'foo', 'bee')
-    assert.deepEqual(action, {
+    assert.deepEqual(resolveAction(action), {
       type: 'SOME_TYPE',
       payload: {
         'foo': 'baz'

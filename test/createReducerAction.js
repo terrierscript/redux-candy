@@ -1,11 +1,6 @@
 import { createReducer } from '../src'
 import { createReducerAction } from '../src/createAction'
 import assert from 'assert'
-import updeep from 'updeep'
-
-const uncurryAction = (action) => {
-  return updeep({ payload: action.payload}, action)
-}
 
 const emulateState = (initialState, action) => {
   const mockReducer = createReducer()
