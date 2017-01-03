@@ -1,6 +1,11 @@
 import { createReducer } from '../src'
 import { createReducerAction } from '../src/createAction'
 import assert from 'assert'
+import updeep from 'updeep'
+
+const uncurryAction = (action) => {
+  return updeep({ payload: action.payload}, action)
+}
 
 const emulateState = (initialState, action) => {
   const mockReducer = createReducer()
@@ -27,21 +32,23 @@ describe('createReducerAction', () => {
     })
   })
   it('override state', () => {
-    const actionCreator = createReducerAction('SOME_TYPE', 'user', (state, userName, value) => {
-      return {
-        [userName]: value
-      }
-    })
-    const action = actionCreator('bob', 100)
-    const actualState = emulateState({
+    const initialState = {
       user: {
         'bob': 10,
         'sam': 20
       }
-    }, action)
+    }
+    const actionCreator = createReducerAction('SOME_TYPE', 'user', (state, userName, value) => {
+      return Object.assign({}, state, {
+        [userName]: value
+      })
+    })
+    const action = actionCreator('bob', 100)
+    const actualState = emulateState(initialState, action)
     assert.deepEqual(actualState, {
       user: {
-        'bob': 100
+        'bob': 100,
+        'sam': 20
       }
     })
   })
