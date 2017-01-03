@@ -26,8 +26,8 @@ const initialState = {
 const reducer = createReducer(initialState)
 
 // counter
-const increment = createAction('INCREMENT', 'counter', () => ( (i) => i + 1 ))
-const decrement = createAction('DECREMENT', 'counter', () => ( (i) => i - 1 ))
+const increment = createAction('INCREMENT', 'counter', (i) => i + 1 )
+const decrement = createAction('DECREMENT', 'counter', (i) => i - 1 )
 
 const Counter = ({dispatch, counter}) => {
   return (
