@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
-import { createReducer, createAction } from 'redux-candy'
+// import { createReducer, createAction } from 'redux-candy'
+import { createReducer, createAction } from '../../lib'
 
 const initialState = {
   counter: 0
@@ -10,8 +11,8 @@ const initialState = {
 const reducer = createReducer(initialState)
 
 // counter
-const increment = createAction('INCREMENT', 'counter', () => ( (i) => i + 1 ))
-const decrement = createAction('DECREMENT', 'counter', () => ( (i) => i - 1 ))
+const increment = createAction('INCREMENT', 'counter', (i) => i + 1 )
+const decrement = createAction('DECREMENT', 'counter', (i) => i - 1 )
 
 const Counter = ({dispatch, counter}) => {
   return (

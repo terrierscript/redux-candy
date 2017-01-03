@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { createStore } from 'redux'
 import { Provider, connect } from 'react-redux'
-import { createReducer, createAction } from 'redux-candy'
+// import { createReducer, createAction } from 'redux-candy'
+import { createReducer, createAction } from '../../lib/'
 
 const initialState = {
   todos: [],
@@ -18,8 +19,8 @@ const creteNewTodo = (text) => ({
   completed: false
 })
 
-const addTodo = createAction('ADD_TODO', 'todos', (text) => (
-  (todos) => [ ...todos, creteNewTodo(text) ]
+const addTodo = createAction('ADD_TODO', 'todos', (todos, text) => (
+  [ ...todos, creteNewTodo(text) ]
 ) )
 
 const toggleTodoComplete = (todo, id ) => {
@@ -31,8 +32,8 @@ const toggleTodoComplete = (todo, id ) => {
   })
 }
 
-const toggleTodo = createAction('TOGGLE_TODO', 'todos', (id) => (
-  (todos) => todos.map( todo => toggleTodoComplete(todo, id) )
+const toggleTodo = createAction('TOGGLE_TODO', 'todos', (todos, id) => (
+  todos.map( todo => toggleTodoComplete(todo, id) )
 ) )
 
 const setVisibilityFilter = createAction('SET_VISIBILITY_FILTER', 'visibilityFilter')
