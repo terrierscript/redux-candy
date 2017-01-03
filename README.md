@@ -65,8 +65,8 @@ And you must pass action that has update function
 
 ```js
 // counter
-const increment = createAction('INCREMENT', 'counter', () => ( (i) => i + 1 ))
-const decrement = createAction('DECREMENT', 'counter', () => ( (i) => i - 1 ))
+const increment = createAction('INCREMENT', 'counter', (i) => i + 1 )
+const decrement = createAction('DECREMENT', 'counter', (i) => i - 1 )
 
 ```
 
@@ -99,7 +99,7 @@ const replaceValueAction = (value) => {
 You can mutate oldValue
 
 ```js
-const listItemAppendAction = createAction('INCREMENT', 'someList', (value => oldList => [...oldList, value])
+const listItemAppendAction = createAction('INCREMENT', 'someList', (oldList, value) => [...oldList, value]))
 // or
 const listItemAppendAction = (value) => {
   type: 'INCREMENT',
@@ -108,6 +108,7 @@ const listItemAppendAction = (value) => {
     someList: (oldList) => [...oldList, value]
   }
 }
+
 ```
 
 You can pass nested property.
@@ -176,7 +177,7 @@ Generate update targetProperty value action.
 
 ```js
 // const initialState = { bob: 1 }
-const complexActionCreator = createAction('ACTION', 'bob', (key) => val)
+const complexActionCreator = createAction('ACTION', 'bob', (state, key) => val)
 store.dispatch(complexActionCreator(10, 'bob')))
 // state:
 // {
@@ -190,12 +191,12 @@ Generate update targetProperty value action.
 
 ```js
 // const initialState = { users: { bob: 1 } }
-const complexActionCreator = createAction('ACTION', ['users', 'bob'], (key) => val)
-store.dispatch(complexActionCreator(10, 'bob')))
+const complexActionCreator = createAction('ACTION', ['users', 'bob'], (state, val) => state + val)
+store.dispatch(complexActionCreator(10)))
 // state:
 // {
 //   users: {
-//     bob: 10
+//     bob: 11
 //   }
 // }
 ```
@@ -204,7 +205,7 @@ store.dispatch(complexActionCreator(10, 'bob')))
 
 Proxy [redux-action](https://github.com/acdlite/redux-actions#createactiontype-payloadcreator--identity-metacreator)
 
-You can fully controll payload.
+You can fully control payload.
 
 ```js
 // const initialState = { bob: 1 }
