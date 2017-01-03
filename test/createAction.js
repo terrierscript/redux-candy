@@ -12,13 +12,15 @@ const assertAction = (action, expected) => {
 
 describe('createAction', () => {
   it('params updator', () => {
-    const actionCreator = createAction('ADD_TODO', 'todos', (text) => {
+    const actionCreator = createAction('ADD_TODO', 'todos', (state, text) => {
       return text
     })
     const action = actionCreator('baz')
     assertAction(action, {
       type: 'ADD_TODO',
-      payload: { todos: 'baz' }
+      payload: {
+        todos: 'baz'
+      }
     })
   })
   it('replaceValue', () => {
@@ -31,16 +33,27 @@ describe('createAction', () => {
       }
     })
   })
+  it('should ignore second value when default payloadCreator', () => {
+    const actionCreator = createAction('ADD_TODO', 'someValue')
+    const action = actionCreator('bee', 'boo')
+    assertAction(action, {
+      type: 'ADD_TODO',
+      payload: {
+        someValue: 'bee'
+      }
+    })
+  })
   it('update mutation', () => {
     const actionCreator = createAction('ADD_TODO', 'todos',
       (text) => (todos) => [ ...todos, text ]
     )
     const action = actionCreator('baz')
+    // TODO: fix
     assert.equal(action.type, 'ADD_TODO')
     assert.equal(typeof action.payload.todos, 'function')
   })
   it('with metaCreator', () => {
-    const actionCreator = createAction('ADD_TODO', 'someValue', (value) => {
+    const actionCreator = createAction('ADD_TODO', 'someValue', (state, value) => {
       return { value }
     }, (_, metaValue) => {
       return { metaValue }

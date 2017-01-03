@@ -1,5 +1,5 @@
 import createReducer from './reducer/createReducer'
-import { createAction } from './action/createAction'
+import { createActionPure as createAction } from './action/createAction'
 
 export {
   createReducer,

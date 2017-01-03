@@ -8,13 +8,12 @@ const emulateState = (initialState, action) => {
 
 describe('createReducer', () => {
   it('update with plain action', () => {
-    const actionCreator = (text) => ({
+    const action = {
       type: 'ADD_TODO',
       payload: {
-        todos: (todos) => [ ...todos, text ]
+        todos: ['foo', 'baz']
       }
-    })
-    const action = actionCreator('baz')
+    }
     const actualState = emulateState({ todos: ['foo'] }, action)
     assert.deepEqual(actualState, {
       todos: ['foo', 'baz']
@@ -22,7 +21,7 @@ describe('createReducer', () => {
   })
   it('with createAction', () => {
     const actionCreator = createAction('ADD_TODO', 'todos',
-      (text) => (todos) => [ ...todos, text ]
+      (todos, text) => [ ...todos, text ]
     )
     const action = actionCreator('baz')
     const actualState = emulateState({ todos: ['foo'] }, action)
@@ -30,7 +29,14 @@ describe('createReducer', () => {
       todos: ['foo', 'baz']
     })
   })
-
+  it('with array action', () => {
+    const actionCreator = createAction('ADD_TODO', ['users', 'bob'], (state, val) => state + val)
+    const action = actionCreator(10)
+    const actualState = emulateState({ users: { bob: 1 } }, action)
+    assert.deepEqual(actualState, {
+      users: { bob: 11 }
+    })
+  })
   it('replaceValue', () => {
     const actionCreator = createAction('ADD_TODO', 'someValue')
     const action = actionCreator('bee')
@@ -82,6 +88,27 @@ describe('createReducer', () => {
       users: {
         bob: 1,
         sam: 10
+      }
+    })
+  })
+  it('override hash state', () => {
+    const initialState = {
+      user: {
+        'bob': 10,
+        'sam': 20
+      }
+    }
+    const actionCreator = createAction('SOME_TYPE', 'user', (state, userName, value) => {
+      return Object.assign({}, state, {
+        [userName]: value
+      })
+    })
+    const action = actionCreator('bob', 100)
+    const actualState = emulateState(initialState, action)
+    assert.deepEqual(actualState, {
+      user: {
+        'bob': 100,
+        'sam': 20
       }
     })
   })

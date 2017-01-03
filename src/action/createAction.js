@@ -5,6 +5,7 @@ import invariant from 'invariant'
 import compose from './compose'
 import { createAction as baseCreateAction } from 'redux-actions'
 import nest from './nest'
+import r from './r'
 
 const toArray = item => (Array.isArray(item)) ? item : [item]
 
@@ -23,7 +24,8 @@ const payloadCreatorInvariant = (payloadCreator) => {
 function generateCreateAction (options) {
   return function (type, property, payloadCreator = options.defaultPayloadCreator, metaCreator) {
     if (isFunction(property)) {
-      return baseCreateAction(type, property, payloadCreator)
+      const [ swapPayloadCreator, swapMetaCreator ] = [property, payloadCreator]
+      return baseCreateAction(type, swapPayloadCreator, swapMetaCreator)
     }
     property = toArray(property)
 
@@ -35,26 +37,17 @@ function generateCreateAction (options) {
       options.payloadCreatorWrapper,
     )
     const wrappedPayloadCreator = convertPayload(payloadCreator)
-
     return baseCreateAction(type, wrappedPayloadCreator, metaCreator)
   }
 }
 
 // createAction
-export const createAction = generateCreateAction({
+export const createActionPure = generateCreateAction({
   defaultPayloadCreator: v => v,
   payloadCreatorWrapper: v => v
 })
 
-// createReducerAction
-const reducerActionPayload = (fn) => {
-  return function toPayloadCreator (...input) {
-    return (state) => fn(state, ...input)
-  }
-}
-
-export const createReducerAction = generateCreateAction({
+export const createAction = generateCreateAction({
   defaultPayloadCreator: (state, v) => v,
-  payloadCreatorWrapper: reducerActionPayload
+  payloadCreatorWrapper: r
 })
-
