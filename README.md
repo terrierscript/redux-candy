@@ -176,14 +176,17 @@ This actionCreator return [FSA compatible](https://github.com/acdlite/flux-stand
 Generate update targetProperty value action.
 
 ```js
+const complexActionCreator = createAction('ACTION', 'bob', (state, input) => state + input)
+
 // const initialState = { bob: 1 }
-const complexActionCreator = createAction('ACTION', 'bob', (state, key) => val)
-store.dispatch(complexActionCreator(10, 'bob')))
+store.dispatch(complexActionCreator(10)))
 // state:
 // {
-//   bob: 10
+//   bob: 11 // 1 + 10
 // }
 ```
+
+`updateFunction` get arguments `(baseValue, ...inputs)`.
 
 ### `createAction(actionType: String, targetProperties: Array, [updateFunction: Function], [metaCreator: Function])`
 
