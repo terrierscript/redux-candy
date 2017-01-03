@@ -42,10 +42,10 @@ function generateCreateAction (options) {
 }
 
 // createAction
-export const createActionPure = generateCreateAction({
-  defaultPayloadCreator: v => v,
-  payloadCreatorWrapper: v => v
-})
+// export const createActionPure = generateCreateAction({
+//   defaultPayloadCreator: v => v,
+//   payloadCreatorWrapper: v => v
+// })
 
 export const createAction = generateCreateAction({
   defaultPayloadCreator: (state, v) => v,
