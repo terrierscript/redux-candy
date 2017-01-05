@@ -1,6 +1,6 @@
 
-function createUpdateFn(fn, ...input){
-  const updateFn = function(state){ return fn(state, ...input) }
+function createUpdateFn (fn, ...input) {
+  const updateFn = function (state) { return fn(state, ...input) }
   return updateFn
 }
 

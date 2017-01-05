@@ -3,5 +3,5 @@ import { createAction } from './action/createAction'
 
 export {
   createReducer,
-  createAction,
+  createAction
 }
