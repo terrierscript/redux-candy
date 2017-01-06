@@ -20,7 +20,7 @@ export default function createReducer (initialState, actionFilter = defaultFilte
     // if (!isObjectPayload(action)) {
     //   return state
     // }
-    if (!meta.update){
+    if (typeof meta.update !== "function"){
       return state
     }
     return updeep(meta.update(payload), state)
