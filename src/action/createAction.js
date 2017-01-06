@@ -21,6 +21,7 @@ const payloadCreatorInvariant = (payloadCreator) => {
   return payloadCreator
 }
 
+
 function generateCreateAction (options) {
   return function (type, property, payloadCreator = options.defaultPayloadCreator, metaCreator) {
     if (isFunction(property)) {

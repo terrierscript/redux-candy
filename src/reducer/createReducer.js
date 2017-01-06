@@ -16,11 +16,13 @@ export default function createReducer (initialState, actionFilter = defaultFilte
     if (!isFSA(action)) {
       return state
     }
-
-    if (!isObjectPayload(action)) {
+    const { payload, meta } = action
+    // if (!isObjectPayload(action)) {
+    //   return state
+    // }
+    if (!meta.update){
       return state
     }
-
-    return updeep(action.payload, state)
+    return updeep(meta.update(payload), state)
   }
 }
