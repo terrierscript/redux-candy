@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Counter from './Counter'
-import Todo from './Todo'
-import Todo2 from './Todo2'
+import Counter from './example/Counter'
+import Todo from './example/Todo'
+import Todo2 from './example/Todo2'
 
 const baseUrl = "https://github.com/inuscript/redux-candy/blob/master/"
 const Sample = ({title, sourcePath, children}) => {
@@ -24,13 +24,13 @@ class App extends Component {
   render() {
     return <div>
       <h1>redux-candy Example</h1>
-      <Sample title={"Counter Example"} sourcePath={"example/src/Counter.js"}>
+      <Sample title={"Counter Example"} sourcePath={"example/src/example/Counter.js"}>
         <Counter />
       </Sample>
-      <Sample title={"Todo Example"} sourcePath={"example/src/Todo.js"}>
+      <Sample title={"Todo Example"} sourcePath={"example/src/example/Todo.js"}>
         <Todo />
       </Sample>
-      <Sample title={"Todo Example 2"} sourcePath={"example/src/Todo2.js"}>
+      <Sample title={"Todo Example 2"} sourcePath={"example/src/example/Todo2.js"}>
         <Todo2 />
       </Sample>
       <a href="//github.com/inuscript/redux-candy">Github</a>
