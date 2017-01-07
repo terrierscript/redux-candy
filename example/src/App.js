@@ -2,22 +2,18 @@ import React, { Component } from 'react';
 import Counter from './example/Counter'
 import Todo from './example/Todo'
 import Todo2 from './example/Todo2'
+import Demo from './Demo'
 
-const baseUrl = "https://github.com/inuscript/redux-candy/blob/master/"
+const raw = "https://raw.githubusercontent.com/inuscript/redux-candy/master"
+const baseUrl = "https://github.com/inuscript/redux-candy/blob/master"
+
 const Sample = ({title, sourcePath, children}) => {
-  const style = {
-    borderRadius: 4,
-    border: "solid #ccc 1px",
-    width: "100vw",
-    padding: 10,
-    margin: "10px 0",
-    boxSizing: "border-box"
-  }
-  return <div style={style}>
+
+  return <div>
     <h2>{title}</h2>
-    {children}
-    <hr />
     <a href={`${baseUrl}/${sourcePath}`}>Source Code ({sourcePath})</a>
+    <Demo sourceUrl={`${raw}/${sourcePath}`}>{children}</Demo>
+    <hr />
   </div>
 }
 class App extends Component {
