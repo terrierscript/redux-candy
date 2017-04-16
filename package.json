@@ -36,7 +36,7 @@
     "flux-standard-action": "^1.0.0",
     "invariant": "^2.2.2",
     "lodash": "^4.17.4",
-    "redux-actions": "^1.2.0",
+    "redux-actions": "^2.0.2",
     "updeep": "^1.0.0"
   },
   "devDependencies": {
